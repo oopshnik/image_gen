@@ -60,8 +60,8 @@ with st.sidebar:
     st.subheader("ℹ️ About")
     st.markdown("""
     [![Powered by Pollinations.ai](https://img.shields.io/badge/Powered%20by-Pollinations.ai-blue?style=for-the-badge&logo=appveyor&borderRadius=50)](https://pollinations.ai)  
-    [![Source Code](https://img.shields.io/badge/Source%20Code-GitHub-black?style=for-the-badge&logo=github&borderRadius=50)](https://github.com/your_repo)  
-    [![Developer](https://img.shields.io/badge/Developer-Contact-green?style=for-the-badge&logo=telegram&borderRadius=50)](https://your_link)
+    [![Source Code](https://img.shields.io/badge/Source%20Code-GitHub-black?style=for-the-badge&logo=github&borderRadius=50)](https://github.com/oopshnik/image_gen)  
+    [![Developer](https://img.shields.io/badge/Developer-Contact-green?style=for-the-badge&logo=telegram&borderRadius=50)](https://t.me/pr_ogr)
     """, unsafe_allow_html=True)
 
 st.markdown("<h3 style='text-align: center;'>Enter Your Image Prompt</h3>", unsafe_allow_html=True)
