@@ -3,7 +3,6 @@ name = "image_gen"
 version = "0.1.0"
 description = "Image Generation Streamlit App"
 authors = ["oopshnik@gmail.com"]
-packages = [{ include = "image_gen" }]  
 
 [tool.poetry.dependencies]
 python = "^3.8"
