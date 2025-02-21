@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import subprocess
+import random
 from urllib.parse import quote
 from io import BytesIO
 
@@ -46,9 +47,13 @@ with st.sidebar:
     width = st.slider("Width:", 256, 2048, 1024, step=64)
     height = st.slider("Height:", 256, 2048, 1024, step=64)
 
-    if "seed" not in st.session_state:
-        st.session_state.seed = 42  # Default seed
-    seed = st.number_input("Seed:", value=st.session_state.seed, min_value=0, step=1)
+    random_seed = st.checkbox("Use Random Seed", value=True)
+    if random_seed:
+        seed = random.randint(1, 1337)
+    else:
+        if "seed" not in st.session_state:
+            st.session_state.seed = 42  
+        seed = st.number_input("Seed:", value=st.session_state.seed, min_value=1, max_value=1337, step=1)
 
     model = st.selectbox("Model:", ["flux", "flux-pro", "flux-realism", "flux-anime", "flux-3d", "flux-cablyai", "turbo"], index=0)
 
@@ -68,7 +73,6 @@ st.markdown("<h3 style='text-align: center;'>Enter Your Image Prompt</h3>", unsa
 col1, col2, col3 = st.columns([1, 3, 1])
 with col2:
     prompt = st.text_input("Prompt:", placeholder="A futuristic city at sunset 🌇", label_visibility="collapsed")
-
 
 col1, col2, col3 = st.columns([1, 2, 1])
 
@@ -98,13 +102,11 @@ with col2:
                 process = subprocess.run(["curl", "-f", "-X", "POST", "-F", "file=@-", "https://0x0.st"],
                         input=img_bytes.getvalue(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
+                upload_url = "Upload failed"
                 if process.returncode == 0:
                     upload_url = process.stdout.decode().strip()
 
-
                 st.image(response.content, caption=f"✨ Generated Image \n🔗 {upload_url}", use_container_width=True)
                 st.success(f"✅ Image generated successfully! Seed used: {seed} | Width: {width} | Height: {height}\n {upload_url}")
-
-
             else:
                 st.error(f"❌ Failed to generate image. Status code: {response.status_code}")
