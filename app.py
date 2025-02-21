@@ -110,3 +110,7 @@ with col2:
                 st.success(f"✅ Image generated successfully! Seed used: {seed} | Width: {width} | Height: {height}\n {upload_url}")
             else:
                 st.error(f"❌ Failed to generate image. Status code: {response.status_code}")
+
+
+
+
